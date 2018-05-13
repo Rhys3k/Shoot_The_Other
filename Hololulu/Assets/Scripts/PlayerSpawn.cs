@@ -1,25 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerSpawn : MonoBehaviour
+public class PlayerSpawn : NetworkBehaviour
 {
-    public int timer = 5;
+    private NetworkStartPosition[] spawnPoints;
 
     void Start()
     {
-
-    }
-
-
-    public void RespawnPlayer()
-    {
-        for (int i = 0; i < timer; i++)
+        if (isLocalPlayer)
         {
-            if(i == timer)
-            {
-                //Spawn Logik LUL
-            }
+        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
         }
     }
+    
+    [ClientRpc]
+    public void RpcRespawn()
+    {
+        Vector3 spawnpoint = Vector3.zero;
+
+        if(spawnPoints != null && spawnPoints.Length > 0)
+        {
+            spawnpoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+        }
+
+        transform.position = spawnpoint;
+    } 
+    
 }
