@@ -12,6 +12,7 @@ public class Weapon : NetworkBehaviour
     [SerializeField] protected int dmg;
     [SerializeField] protected int speed = 1000;
     [SerializeField] public int maxAmmo;
+    [SyncVar (hook = "OnChangedAmmo")]
     [SerializeField] public int curAmmo;
     [SerializeField] protected int reloadTime;
     [SerializeField] protected float delay;
@@ -42,8 +43,12 @@ public class Weapon : NetworkBehaviour
     protected virtual void ChangeAmmo(int ammoAmount)
     {
         curAmmo += ammoAmount;
-        ammoText.text = curAmmo+" / "+maxAmmo;
-       
+        
+    }
+
+    protected virtual void OnChangedAmmo(int ammo)
+    {
+        ammoText.text = ammo + " / " + maxAmmo;
     }
 
     public virtual void AmmoReloadCheck()

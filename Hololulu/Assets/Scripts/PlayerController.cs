@@ -10,8 +10,7 @@ public class PlayerController : NetworkBehaviour {
     public bool lookAtPlayer;
     public int playerId;
     public int maxHp;
-    [SyncVar]
-    public int curHp;
+    [SyncVar (hook = "OnChangedHealth")] public int curHp;
     public Text playerHp;
 
     private float xAxis;
@@ -29,6 +28,11 @@ public class PlayerController : NetworkBehaviour {
         playerHp.text = "HP: " + curHp + " / " + maxHp;
         rigid = GetComponent<Rigidbody>();
 	}
+
+    public override void OnStartLocalPlayer()
+    {
+        GetComponentInChildren<Canvas>().enabled = true;
+    }
 
     private void Update()
     {
@@ -67,20 +71,25 @@ public class PlayerController : NetworkBehaviour {
 
     public void GetDamage(int dmg)
     {
-        if (isServer)
+        if (!isServer)
         {
             return;
         }
 
         curHp = curHp - dmg;
-        playerHp.text = "HP: " + curHp + " / " + maxHp;
+        
 
         if (curHp <= 0)
         {
             IsDying();
         }
     }
-    
+
+    private void OnChangedHealth(int hp)
+    {
+        playerHp.text = "HP: " + hp + " / " + maxHp;
+    }
+
     void IsDying()
     {
         Destroy(this.gameObject);
