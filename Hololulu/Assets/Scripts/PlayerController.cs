@@ -31,7 +31,7 @@ public class PlayerController : NetworkBehaviour {
 
     public override void OnStartLocalPlayer()
     {
-        GetComponentInChildren<Canvas>().enabled = true;
+        //GetComponentInChildren<Canvas>().enabled = true;
     }
 
     private void Update()

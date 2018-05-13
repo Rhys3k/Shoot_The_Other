@@ -38,8 +38,6 @@ GameObject:
   - component: {fileID: 4184256986427166}
   - component: {fileID: 33019298596878602}
   - component: {fileID: 23758320997713328}
-  - component: {fileID: 114978182538490256}
-  - component: {fileID: 114351870317468234}
   m_Layer: 0
   m_Name: AssaultRifle
   m_TagString: Untagged
@@ -63,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1237824093154944
 GameObject:
   m_ObjectHideFlags: 1
@@ -143,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1711483320135868
 GameObject:
   m_ObjectHideFlags: 1
@@ -186,7 +184,6 @@ GameObject:
   - component: {fileID: 4006217922936050}
   - component: {fileID: 33762200138070970}
   - component: {fileID: 23513240453784622}
-  - component: {fileID: 114802733994262674}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -483,8 +480,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 1153390605048436}
-  - {fileID: 1916825344410854}
-  weaponName: {fileID: 114206065000077200}
+  bullet: {fileID: 1196429123043826, guid: c65a2d885aff2b14f928a41e5ab86f63, type: 2}
+  name: AssaultRifle
+  dmg: 10
+  speed: 1000
+  delay: 0.7
+  bulletSpawnPoints:
+  - {fileID: 4052646511572600}
 --- !u!114 &114035365656725080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -619,40 +621,8 @@ MonoBehaviour:
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
+  m_InterpolateRotation: 0
   m_InterpolateMovement: 1
---- !u!114 &114351870317468234
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153390605048436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 38
-    i1: 59
-    i2: 61
-    i3: 186
-    i4: 124
-    i5: 182
-    i6: 114
-    i7: 68
-    i8: 152
-    i9: 159
-    i10: 62
-    i11: 133
-    i12: 62
-    i13: 198
-    i14: 137
-    i15: 240
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114485654588877128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -705,30 +675,6 @@ MonoBehaviour:
   maxHp: 100
   curHp: 0
   playerHp: {fileID: 114056770488657558}
---- !u!114 &114802733994262674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916825344410854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c2ee9486258b94799d1ab0d6aa4696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 1196429123043826, guid: c65a2d885aff2b14f928a41e5ab86f63, type: 2}
-  name: Shotgun
-  dmg: 5
-  speed: 1000
-  maxAmmo: 3
-  curAmmo: 0
-  reloadTime: 2
-  delay: 1
-  bulletSpawnPoints:
-  - {fileID: 4712647352896668}
-  - {fileID: 4655699920828474}
-  - {fileID: 4845666435984522}
-  ammoText: {fileID: 114035365656725080}
 --- !u!114 &114908073344422832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -779,28 +725,6 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &114978182538490256
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153390605048436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146f1ada9b21c144f94bd31f2ceb67ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 1196429123043826, guid: c65a2d885aff2b14f928a41e5ab86f63, type: 2}
-  name: AssaultRifle
-  dmg: 10
-  speed: 1000
-  maxAmmo: 30
-  curAmmo: 0
-  reloadTime: 1
-  delay: 0.4
-  bulletSpawnPoints:
-  - {fileID: 4052646511572600}
-  ammoText: {fileID: 114035365656725080}
 --- !u!136 &136383780987103546
 CapsuleCollider:
   m_ObjectHideFlags: 1
