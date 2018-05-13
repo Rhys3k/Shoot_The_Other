@@ -93,6 +93,6 @@ public class PlayerController : NetworkBehaviour {
     void IsDying()
     {
         Destroy(this.gameObject);
-        //playerSpawn.RespawnPlayer();
+        playerSpawn.RpcRespawn();
     }
 }
