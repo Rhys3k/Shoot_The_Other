@@ -31,6 +31,6 @@ public class Shotgun : Weapon
         NetworkServer.Spawn(bulletObj2);
         NetworkServer.Spawn(bulletObj3);
 
-        ChangeAmmo(-1);
+        //ChangeAmmo(-1);
     }
 }

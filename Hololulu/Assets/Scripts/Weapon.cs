@@ -11,13 +11,13 @@ public class Weapon : NetworkBehaviour
     [SerializeField] protected string name;
     [SerializeField] protected int dmg;
     [SerializeField] protected int speed = 1000;
-    [SerializeField] public int maxAmmo;
-    [SyncVar (hook = "OnChangedAmmo")]
-    [SerializeField] public int curAmmo;
+    // [SerializeField] public int maxAmmo;
+    //[SyncVar (hook = "ChangeAmmo")]
+    //[SerializeField] public int curAmmo;
     [SerializeField] protected int reloadTime;
     [SerializeField] protected float delay;
     [SerializeField] protected List<Transform> bulletSpawnPoints;
-    [SerializeField] public Text ammoText;
+    //[SerializeField] public Text ammoText;
 
     public float Delay { get { return delay; } }
     public int Dmg { get { return dmg; } }
@@ -37,28 +37,23 @@ public class Weapon : NetworkBehaviour
 
         NetworkServer.Spawn(bulletObj);
 
-        ChangeAmmo(-1);
+        // ChangeAmmo(-1);
     }
 
-    protected virtual void ChangeAmmo(int ammoAmount)
-    {
-        curAmmo += ammoAmount;
-        
-    }
-
-    protected virtual void OnChangedAmmo(int ammo)
-    {
-        ammoText.text = ammo + " / " + maxAmmo;
-    }
+    //protected virtual void ChangeAmmo(int ammoAmount)
+    //{
+    //    curAmmo += ammoAmount;
+    //    ammoText.text = curAmmo + " / " + maxAmmo;
+    //}
 
     public virtual void AmmoReloadCheck()
     {
-        if (curAmmo > 0 && !isReloading)
+        if ( !isReloading)
         {
             Shoot();
         }
-        else
-            WeaponReload();
+       // else
+       //     WeaponReload();
     }
 
     public virtual void WeaponReload()
@@ -73,7 +68,7 @@ public class Weapon : NetworkBehaviour
 
     protected virtual void Start()
     {
-        ChangeAmmo(maxAmmo);
+      //  ChangeAmmo(maxAmmo);
     }
 
     protected virtual void Update()
@@ -81,8 +76,8 @@ public class Weapon : NetworkBehaviour
         Debug.Log(isReloading + "   " + (Time.time >= reloadDelay));
         if(isReloading && Time.time >= reloadDelay)
         {
-            int reloadAmmo = maxAmmo - curAmmo;
-            ChangeAmmo(reloadAmmo);
+           // int reloadAmmo = maxAmmo - curAmmo;
+           // ChangeAmmo(reloadAmmo);
             isReloading = false;
             Debug.Log("Reloading finished!");
         }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class WeaponController : NetworkBehaviour
 {
     [SerializeField] private List<GameObject> weapons;
-
+ 
     private Weapon activeWeapon;
 
     private float shootDelay = 0f;
@@ -60,7 +60,7 @@ public class WeaponController : NetworkBehaviour
 
         if(weaponName!=null && activeWeapon!=null)
         weaponName.text = activeWeapon.name;
-        activeWeapon.ammoText.text = activeWeapon.curAmmo + " / " + activeWeapon.maxAmmo;
+        //activeWeapon.ammoText.text = activeWeapon.curAmmo + " / " + activeWeapon.maxAmmo;
     }
 
     [Command]
