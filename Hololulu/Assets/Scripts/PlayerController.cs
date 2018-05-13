@@ -29,11 +29,6 @@ public class PlayerController : NetworkBehaviour {
         rigid = GetComponent<Rigidbody>();
 	}
 
-    public override void OnStartLocalPlayer()
-    {
-        //GetComponentInChildren<Canvas>().enabled = true;
-    }
-
     private void Update()
     {
         if (!isLocalPlayer)
